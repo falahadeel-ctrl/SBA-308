@@ -96,6 +96,27 @@ function getLearnerData(course, ag, submissions) {
   return result;
 }
 
+
+
+
+function processing(){
+for(i=0;i<LearnerSubmissions.length;i++){
+if(LearnerSubmissions[i].learner_id==result[z].id){
+    let score_1=LearnerSubmissions[i].submission
+    let score_2=
+    let score_3=
+    let total_score=
+};
+else{
+        //put error in here
+    }
+        }
+}
+
+
+
+
+
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
 
 console.log(result);
