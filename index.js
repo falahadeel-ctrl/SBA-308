@@ -78,6 +78,20 @@ const LearnerSubmissions = [
 
 function getLearnerData(course, ag, submissions) {
   // here, we would process this data to achieve the desired result.
+  for(i=0;i<LearnerSubmissions.length;i++){
+    for(z=0;z<result.length;z++){
+if(LearnerSubmissions[i].learner_id==result[z].id){
+    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+    let total_score=+score_1+score_2+score_3;
+    let avg=total_score/points_possible;
+};
+else{
+        //put error in here
+    }
+        }
+}
   const result = [
     {
       id: 125,
@@ -95,25 +109,6 @@ function getLearnerData(course, ag, submissions) {
 
   return result;
 }
-
-
-
-
-function processing(){
-for(i=0;i<LearnerSubmissions.length;i++){
-if(LearnerSubmissions[i].learner_id==result[z].id){
-    let score_1=LearnerSubmissions[i].submission
-    let score_2=
-    let score_3=
-    let total_score=
-};
-else{
-        //put error in here
-    }
-        }
-}
-
-
 
 
 
