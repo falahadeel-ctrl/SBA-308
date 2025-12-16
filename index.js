@@ -78,36 +78,36 @@ const LearnerSubmissions = [
 
 function getLearnerData(course, ag, submissions) {
   // here, we would process this data to achieve the desired result.
-  for(i=0;i<LearnerSubmissions.length;i++){
-    for(z=0;z<result.length;z++){
-if(LearnerSubmissions[i].learner_id==result[z].id){
-    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
-    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
-    LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
-    let total_score=+score_1+score_2+score_3;
-    let avg=total_score/points_possible;
+
+  //avg
+  //learner ID
+  //assignment 1
+  //assignment 2
+
+  //LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+  //LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+  //LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
+  //let total_score=+score_1+score_2+score_3;
+  //let avg=total_score/points_possible;
+  
+  const result = [];
+  const object = {};
+//digging out data
+  for(let i=0;i<submissions.length;i++){
+let sub_learnerID = submissions[i].learner_id;
+let sub_assignmentID = submissions[i].assignment_id;
+let sub_score = submissions[i].submission.score;
+//matching data
+    for(let i=0;i<ag.assignments.length;i++){
+      let max_score=ag.assignments[i].points_possible;
+
+if(sub_assignmentID==ag.assignments[i].id){
 };
-else{
-        //put error in here
-    }
         }
 }
-  const result = [
-    {
-      id: 125,
-      avg: 0.985, // (47 + 150) / (50 + 150)
-      1: 0.94, // 47 / 50
-      2: 1.0 // 150 / 150
-    },
-    {
-      id: 132,
-      avg: 0.82, // (39 + 125) / (50 + 150)
-      1: 0.78, // 39 / 50
-      2: 0.833 // late: (140 - 15) / 150
-    }
-  ];
 
-  return result;
+
+return result;
 }
 
 
