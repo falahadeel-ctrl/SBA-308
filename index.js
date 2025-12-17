@@ -125,7 +125,7 @@ function getLearnerData(course, ag, submissions) {
 
         }
         // object[sub_learnerID].total_score+=sub_score;
-        const percentage = (sub_score / max_score)*100;
+        const percentage = (sub_score / max_score) * 100;
         object[sub_learnerID].Assignment_ID[sub_assignmentID] = percentage;
 
         // object[sub_learnerID].avg=object[sub_learnerID].total_score/object[sub_learnerID].totalmaxscore;
@@ -133,7 +133,7 @@ function getLearnerData(course, ag, submissions) {
         // object[sub_learnerID].totalscore += sub_score;
         // object[sub_learnerID].totalmaxscore += max_score;
         object[sub_learnerID].totalscore += sub_score;
-object[sub_learnerID].totalmaxscore += max_score;
+        object[sub_learnerID].totalmaxscore += max_score;
         // object[sub_learnerID].avg=total_score/total_max_score;
         object[sub_learnerID].avg = object[sub_learnerID].totalscore / object[sub_learnerID].totalmaxscore;
       }
@@ -142,8 +142,8 @@ object[sub_learnerID].totalmaxscore += max_score;
       //avg display
     };
   }
-  for (z = 0; z < Object.keys(object).length; z++) {
-    result.push(object[Object.keys(object)[z]]);
+  for (/*let z = 0; z < Object.keys(object).length; z++*/ let learner_id in object) {
+    result.push(object[learner_id]/*keys(object)[z]*/);
   }
   return result;
 }
