@@ -89,59 +89,63 @@ function getLearnerData(course, ag, submissions) {
   //LearnerSubmissions[i].assignment_id=LearnerSubmissions[i].submission["score"];
   //let total_score=+score_1+score_2+score_3;
   //let avg=total_score/points_possible;
-  
+
   const result = [];
   const object = {};
-//digging out data
-  for(let i=0;i<submissions.length;i++){
-let sub_learnerID = submissions[i].learner_id;
-let sub_assignmentID = submissions[i].assignment_id;
-let sub_score = submissions[i].submission.score;
-//matching data
-    for(let j=0;j<ag.assignments.length;j++){
-      let max_score=ag.assignments[j].points_possible;
+  //digging out data
+  for (let i = 0; i < submissions.length; i++) {
+    let sub_learnerID = submissions[i].learner_id;
+    let sub_assignmentID = submissions[i].assignment_id;
+    let sub_score = submissions[i].submission.score;
+    //matching data
+    for (let j = 0; j < ag.assignments.length; j++) {
+      let max_score = ag.assignments[j].points_possible;
 
-if(sub_assignmentID==ag.assignments[j].id){
-  let due_date = new Date(ag.assignments[j].due_at);
-  let sub_date = new Date(submissions[i].submission.submitted_at);
-  let total_max_score=+ag.assignments[j].points_possible;
-  if(sub_date>due_date){
-    sub_score=sub_score-(max_score*0.1);
-  }
-  if(object[sub_learnerID]==null && due_date<=new Date()){
-      
-      // let total_score=+sub_assignmentID[i];
-      
-object[sub_learnerID]={
-    student_ID: sub_learnerID,
-    Assignment_ID: {},
-    totalscore: 0,
-    totalmaxscore: 0,
-    avg: 0
-    }
-   
-    }
-    // object[sub_learnerID].total_score+=sub_score;
-    percentage=sub_score/max_score;
-    object[sub_learnerID].Assignment_ID[sub_assignmentID] = percentage;
-    object[sub_learnerID].totalscore+=sub_score;
-    object[sub_learnerID].totalmaxscore+=total_max_score;
-    object[sub_learnerID].avg=total_score/total_max_score;
-  }
-  //assignment number display
-  //learner id display
-  //avg display
-  result.push(object[sub_learnerID]);
-};
+      if (sub_assignmentID == ag.assignments[j].id) {
+        let due_date = new Date(ag.assignments[j].due_at);
+        let sub_date = new Date(submissions[i].submission.submitted_at);
+        // let total_max_score=+ag.assignments[j].points_possible;
+        if (due_date > new Date()) {
+          continue;
         }
+        if (sub_date > due_date) {
+          sub_score = sub_score - (max_score * 0.1);
+        }
+        if (object[sub_learnerID] == null && due_date <= new Date()) {
+
+          // let total_score=+sub_assignmentID[i];
+
+          object[sub_learnerID] = {
+            student_ID: sub_learnerID,
+            Assignment_ID: {},
+            totalscore: 0,
+            totalmaxscore: 0,
+            avg: 0
+          }
+
+        }
+        // object[sub_learnerID].total_score+=sub_score;
+        const percentage = (sub_score / max_score)*100;
+        object[sub_learnerID].Assignment_ID[sub_assignmentID] = percentage;
+
+        // object[sub_learnerID].avg=object[sub_learnerID].total_score/object[sub_learnerID].totalmaxscore;
+        // object[sub_learnerID].totalmaxscore += total_max_score;
+        // object[sub_learnerID].totalscore += sub_score;
+        // object[sub_learnerID].totalmaxscore += max_score;
+        object[sub_learnerID].totalscore += sub_score;
+object[sub_learnerID].totalmaxscore += max_score;
+        // object[sub_learnerID].avg=total_score/total_max_score;
+        object[sub_learnerID].avg = object[sub_learnerID].totalscore / object[sub_learnerID].totalmaxscore;
+      }
+      //assignment number display
+      //learner id display
+      //avg display
+    };
+  }
+  for (z = 0; z < Object.keys(object).length; z++) {
+    result.push(object[Object.keys(object)[z]]);
+  }
+  return result;
 }
-
-
-return result;
-}
-
-
-
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-
 console.log(result);
