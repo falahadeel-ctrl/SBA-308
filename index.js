@@ -103,24 +103,35 @@ let sub_score = submissions[i].submission.score;
 
 if(sub_assignmentID==ag.assignments[j].id){
   let due_date = new Date(ag.assignments[j].due_at);
-  let sub_date = new Date(submissions[i].submitted_at);
+  let sub_date = new Date(submissions[i].submission.submitted_at);
+  let total_max_score=+ag.assignments[j].points_possible;
+  if(sub_date>due_date){
+    sub_score=sub_score-(max_score*0.1);
+  }
   if(object[sub_learnerID]==null && due_date<=new Date()){
-    if(sub_date>=due_date){
-      sub_score=sub_score-(max_score*0.1);
-      let total_score=+sub_assignmentID[i];
-      let total_max_score=+ag.assignments[j].points_possible;
+      
+      // let total_score=+sub_assignmentID[i];
+      
 object[sub_learnerID]={
     student_ID: sub_learnerID,
-    Assignment_ID: [sub_assignmentID[i]],
-    avg: total_score/total_max_score
+    Assignment_ID: {},
+    totalscore: 0,
+    totalmaxscore: 0,
+    avg: 0
     }
    
     }
-    
+    // object[sub_learnerID].total_score+=sub_score;
+    percentage=sub_score/max_score;
+    object[sub_learnerID].Assignment_ID[sub_assignmentID] = percentage;
+    object[sub_learnerID].totalscore+=sub_score;
+    object[sub_learnerID].totalmaxscore+=total_max_score;
+    object[sub_learnerID].avg=total_score/total_max_score;
   }
   //assignment number display
   //learner id display
   //avg display
+  result.push(object[sub_learnerID]);
 };
         }
 }
