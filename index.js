@@ -98,10 +98,29 @@ let sub_learnerID = submissions[i].learner_id;
 let sub_assignmentID = submissions[i].assignment_id;
 let sub_score = submissions[i].submission.score;
 //matching data
-    for(let i=0;i<ag.assignments.length;i++){
-      let max_score=ag.assignments[i].points_possible;
+    for(let j=0;j<ag.assignments.length;j++){
+      let max_score=ag.assignments[j].points_possible;
 
-if(sub_assignmentID==ag.assignments[i].id){
+if(sub_assignmentID==ag.assignments[j].id){
+  let due_date = new Date(ag.assignments[j].due_at);
+  let sub_date = new Date(submissions[i].submitted_at);
+  if(object[sub_learnerID]==null && due_date<=new Date()){
+    if(sub_date>=due_date){
+      sub_score=sub_score-(max_score*0.1);
+      let total_score=+sub_assignmentID[i];
+      let total_max_score=+ag.assignments[j].points_possible;
+object[sub_learnerID]={
+    student_ID: sub_learnerID,
+    Assignment_ID: [sub_assignmentID[i]],
+    avg: total_score/total_max_score
+    }
+   
+    }
+    
+  }
+  //assignment number display
+  //learner id display
+  //avg display
 };
         }
 }
