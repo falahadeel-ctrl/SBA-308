@@ -104,8 +104,9 @@ function getLearnerData(course, ag, submissions) {
       try{if (sub_assignmentID == ag.assignments[j].id) {
         let due_date = new Date(ag.assignments[j].due_at);
         let sub_date = new Date(submissions[i].submission.submitted_at);
+        let notdueassignment =due_date > new Date();
         // let total_max_score=+ag.assignments[j].points_possible;
-        if (due_date > new Date()) {
+        if (notdueassignment) {
           continue;
           // throw  "opps!!! due date hasnt reached yet";
         }else{
